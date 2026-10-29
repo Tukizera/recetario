@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <base href="/recetario/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Mi recetario personal">
+
+  <!-- Para usarla como app desde la pantalla de inicio del iPhone/iPad. -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Recetario">
+  <meta name="theme-color" content="#FCEFF5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#2A2332" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="manifest" href="manifest.json">
+  <title>Mi recetario</title>
+
+  <style>
+    html, body { margin: 0; height: 100%; background: #FCEFF5; }
+    @media (prefers-color-scheme: dark) { html, body { background: #2A2332; } }
+    /* Pantalla de carga mientras arranca la app. */
+    #cargando {
+      position: fixed; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 18px;
+      font: 600 15px -apple-system, system-ui, sans-serif; color: #8E6CC4;
+      transition: opacity .3s;
+    }
+    #cargando img { width: 96px; height: 96px; border-radius: 22px;
+      box-shadow: 0 8px 24px #5B4A7A33; animation: latido 1.4s ease-in-out infinite; }
+    @keyframes latido { 50% { transform: scale(1.06); } }
+  </style>
+</head>
+<body>
+  <div id="cargando">
+    <img src="icons/Icon-192.png" alt="">
+    <span>Abriendo tu recetario…</span>
+  </div>
+  <script src="flutter_bootstrap.js" async></script>
+  <script>
+    // Guarda la app en el teléfono para que abra aunque no haya internet.
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('sw.js'));
+    }
+  </script>
+</body>
+</html>

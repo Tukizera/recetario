@@ -1,0 +1,36 @@
+{
+    "name": "Mi recetario",
+    "short_name": "Recetario",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#FCEFF5",
+    "theme_color": "#8E6CC4",
+    "description": "Mi recetario personal",
+    "orientation": "any",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "lang": "es"
+}
