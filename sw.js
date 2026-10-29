@@ -3,7 +3,20 @@
 // Supabase pasa directo.
 const CACHE = 'recetario-v1';
 
-self.addEventListener('install', () => self.skipWaiting());
+// Lo necesario para arrancar sin conexión desde la primera visita; el resto
+// (fuentes, íconos) se guarda a medida que se usa.
+const BASICO = [
+  './', 'index.html', 'flutter_bootstrap.js', 'flutter.js', 'main.dart.js',
+  'manifest.json', 'icons/Icon-192.png', 'canvaskit/canvaskit.js',
+  'canvaskit/canvaskit.wasm', 'assets/AssetManifest.bin.json',
+  'assets/FontManifest.json', 'assets/fonts/MaterialIcons-Regular.otf',
+];
+
+self.addEventListener('install', (e) => {
+  self.skipWaiting();
+  e.waitUntil(caches.open(CACHE).then((cache) =>
+    Promise.all(BASICO.map((url) => cache.add(url).catch(() => {})))));
+});
 self.addEventListener('activate', (e) => e.waitUntil(self.clients.claim()));
 
 self.addEventListener('fetch', (e) => {
